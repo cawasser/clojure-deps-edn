@@ -37,6 +37,20 @@
  {
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Architecture
+
+  ;; polylith (see https://github.com/polyfy/polylith#use-the-polylith-tool-as-a-dependency)
+  ;;
+  ;; clojure -M:poly <cmd>
+  ;; clojure -M:poly help
+  ;; clojure -M:poly info
+  ;; clojure -M:poly check
+  ;; clojure -M:poly create workspace name:<example> top-ns:<example>
+  :poly  {:extra-deps {polylith/clj-poly
+                       {:mvn/version "0.1.0-alpha9"}}
+          :main-opts  ["-m" "polylith.clj.core.poly-cli.core"]}
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; REPL experience
 
   ;; Rebel Readline
@@ -102,8 +116,8 @@
    {vlaaad/reveal              {:mvn/version "1.1.164"}
     com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
    :jvm-opts  ["-Dvlaaad.reveal.prefs={:theme,:light,:font-family,\"https://ff.static.1001fonts.net/u/b/ubuntu.mono.ttf\",:font-size,32}"]
-   :main-opts ["-e" "(require,'rebel-readline.core),(require,'rebel-readline.clojure.line-reader),(require,'rebel-readline.clojure.service.local),(require,'rebel-readline.clojure.main),(require,'vlaaad.reveal)(rebel-readline.core/with-line-reader,(rebel-readline.clojure.line-reader/create,(rebel-readline.clojure.service.local/create)),(vlaaad.reveal/repl,:prompt,(fn,[]),:read,(rebel-readline.clojure.main/create-repl-read)))"]
-   }
+   :main-opts ["-e" "(require,'rebel-readline.core),(require,'rebel-readline.clojure.line-reader),(require,'rebel-readline.clojure.service.local),(require,'rebel-readline.clojure.main),(require,'vlaaad.reveal)(rebel-readline.core/with-line-reader,(rebel-readline.clojure.line-reader/create,(rebel-readline.clojure.service.local/create)),(vlaaad.reveal/repl,:prompt,(fn,[]),:read,(rebel-readline.clojure.main/create-repl-read)))"]}
+
 
 
 
@@ -1001,11 +1015,11 @@
                 {:git/url "https://github.com/dundalek/closh.git"
                  :tag     "v0.5.0"
                  :sha     "dec68b43a66ff8547e4742fa433c4d486f550e60"}}
-   :main-opts  ["-m" "closh.zero.frontend.rebel"]}
+   :main-opts  ["-m" "closh.zero.frontend.rebel"]}}
 
 
 
-  } ;; End of alias definitions
+   ;; End of alias definitions
 
 
  ;; Library Repositories
@@ -1014,7 +1028,7 @@
  ;; JCenter is large and fast mirror often accessible behind corporate firewalls
 
  :mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
-             "clojars" {:url "https://repo.clojars.org/"}
+             "clojars" {:url "https://repo.clojars.org/"}}}
 
              ;; Clojure snapshots
              ;; "sonatype" {:url "https://oss.sonatype.org/content/repositories/snapshots/"}
@@ -1034,4 +1048,4 @@
 
              ;; Example of local Artifactory repository configuration
              ;; {"business-area" {:url "https://artifacts.internal-server.com:443/artifactory/business-area-maven-local"}
-             }}
+
