@@ -27,7 +27,8 @@
 
  :deps
  ;; Clojure standard library
- {org.clojure/clojure {:mvn/version "1.10.1"}}
+ {org.clojure/clojure {:mvn/version "1.10.1"}
+  polylith/clj-poly {:mvn/version "0.1.0-alpha9"}}
 
  ;; End of: Main dependencies
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -46,8 +47,7 @@
   ;; clojure -M:poly info
   ;; clojure -M:poly check
   ;; clojure -M:poly create workspace name:<example> top-ns:<example>
-  :poly  {:extra-deps {polylith/clj-poly
-                       {:mvn/version "0.1.0-alpha9"}}
+  :poly  {:extra-deps {polylith/clj-poly {:mvn/version "0.1.0-alpha9"}}
           :main-opts  ["-m" "polylith.clj.core.poly-cli.core"]}
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -92,6 +92,7 @@
   ;; clj -M:repl/reveal-nrepl
   :repl/reveal-nrepl
   {:extra-deps {vlaaad/reveal {:mvn/version "1.1.171"}
+                vlaaad/remote-repl {:mvn/version "1.1"}
                 nrepl/nrepl   {:mvn/version "0.8.3"}}
    :main-opts  ["-m" "nrepl.cmdline"
                 "--middleware" "[vlaaad.reveal.nrepl/middleware]"
@@ -191,20 +192,19 @@
   ;; clojure -M:project/new luminus practicalli/full-stack-app +http-kit +h2 +reagent +auth
 
   ;; Edn command line arguments
-  ;; clojure -X:project/new  ;; library project called playground
-  ;; clojure -X:project/new :name practicalli/my-library
-  ;; clojure -X:project/new :template app :name practicalli/my-application
-  ;; clojure -X:project/new :template luminus :name practicalli/full-stack-app +http-kit +h2 +reagent +auth
+  ;; clojure -X:project/new :name my-application
+  ;; clojure -X:project/new :template lib :name my-library
+  ;; clojure -X:project/new :template luminus :name full-stack-app +http-kit +h2 +reagent +auth
 
   :project/new
-  {:replace-deps {seancorfield/clj-new {:mvn/version "1.1.228"}}
+  {:extra-deps   {seancorfield/clj-new {:mvn/version "1.1.309"}}
    :exec-fn      clj-new/create
-   :exec-args    {:template lib :name practicalli/playground}
+   :exec-args    {:template "app"}
    :main-opts    ["-m" "clj-new.create"]}
 
   ;; ALPHA status: Add 'something' to existing project (subject to change)
   :project/add
-  {:replace-deps {seancorfield/clj-new {:mvn/version "1.1.228"}}
+  {:replace-deps {seancorfield/clj-new {:mvn/version "1.1.309"}}
    :exec-fn      clj-new/generate
    :main-opts    ["-m" "clj-new.generate"]}
 
